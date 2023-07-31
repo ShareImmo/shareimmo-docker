@@ -1,0 +1,9 @@
+[submodule "shareimmo-api"]
+	path = shareimmo-api
+	url = https://github.com/ShareImmo/shareimmo-api.git
+[submodule "shareimmo-ihm"]
+	path = shareimmo-ihm
+	url = https://github.com/ShareImmo/shareimmo-ihm.git
+[submodule "shareimmo-dapp"]
+	path = shareimmo-dapp
+	url = https://github.com/ShareImmo/shareimmo-dapp.git
