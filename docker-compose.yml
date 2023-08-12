@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile.ganache
     ports:
       - "8545:8545"
-  dapp:
+  api:
     image: schadokar/eth-server:1.0.0
     build: .
     ports:
@@ -21,4 +21,4 @@ services:
     ports:
       - "3000:80"
     depends_on:
-      - dapp
+      - api
