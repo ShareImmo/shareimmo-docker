@@ -2,8 +2,6 @@ all:
 	docker compose build &&\
 	docker compose up -d
 
-reset:
-	docker exec app npm run reset
 mac:
 	COMPOSE_DOCKER_CLI_BUILD=1 \
 	DOCKER_BUILDKIT=1 \
@@ -15,18 +13,18 @@ reset:
 	docker exec npm run reset
 
 logs:
-	docker logs postgres &&\
-	docker logs app
+	docker logs mysqldb &&\
+	docker logs api
 
 refresh:
-	docker exec app npm run build
+	docker exec api npm run build &&\
+	docker exec ihm npm run build
 
 clean:
-	docker container stop postgres app &&\
-	docker network rm api
+	docker-compose down
 
 fclean: clean
-	@docker system prune -af
+	docker-compose down --rmi all
 
 re: fclean all
 

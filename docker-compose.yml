@@ -1,12 +1,25 @@
 version: "3"
 services:
   ganache:
-    image: schadokar/eth-ganache:1.0.0
     build:
       context: .
       dockerfile: Dockerfile.ganache
     ports:
       - "8545:8545"
+
+  mysqldb:
+    platform: linux/x86_64
+    image: mysql:5.7
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+      - MYSQL_DATABASE=$MYSQLDB_DATABASE
+    ports:
+      - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
+    volumes:
+      - db:/var/lib/mysql
+
   api:
     image: schadokar/eth-server:1.0.0
     build: .
@@ -22,3 +35,6 @@ services:
       - "3000:80"
     depends_on:
       - api
+
+volumes: 
+  db:
