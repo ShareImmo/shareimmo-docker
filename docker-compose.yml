@@ -10,8 +10,8 @@ services:
   mysqldb:
     platform: linux/x86_64
     image: mysql:5.7
-    restart: unless-stopped
-    env_file: ./.env
+    restart: always
+    env_file: .env
     environment:
       - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
       - MYSQL_DATABASE=$MYSQLDB_DATABASE
@@ -21,18 +21,18 @@ services:
       - db:/var/lib/mysql
 
   api:
-    image: schadokar/eth-server:1.0.0
     build: .
     ports:
       - "4000:4000"
     depends_on:
       - ganache
+    volumes:
+      - ./shareimmo-api:/shareimmo-api
 
-  react:
-    image: schadokar/eth-react:1.0.0
+  ihm:
     build: ./shareimmo-ihm
     ports:
-      - "3000:80"
+      - "3001:80"
     depends_on:
       - api
 
