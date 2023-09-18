@@ -21,5 +21,7 @@ RUN npm install -g nodemon
 # Copy the server and ethereum module
 COPY . .
 
+RUN cd shareimmo-api && npm install && cd ..
+
 # set the default command
 CMD ["npm","run","dev"]

@@ -108,3 +108,35 @@ CREATE TABLE Photo (
   photo_bien VARCHAR(255),
   FOREIGN KEY (bien_id_fk) REFERENCES BienImmobilier(bien_id)
 );
+
+INSERT INTO BienImmobilier (nom, reference, adrosso, adresse_complement, ville, code_postal, pays, description, date_achat, superficie, nombre_de_pieces, etage, montant_acquisition, titre_propriete, document)
+VALUES ('Appartement Paris', 'Ref001', '12 Rue de Paris', 'Apt 5', 'Paris', '75001', 'France', 'Un bel appartement', '2023-09-17 12:00:00', 45, 3, 2, 300000.00, 'Titre001', 'Doc001');
+
+INSERT INTO Projet (bien_id_fk, date_mise_en_ligne, date_fin_financement, montant_finance, montant_projet, frais_shareimmo, frais_notaire, frais_administratifs, frais_gestion, frais_operationnels, taxe_d_etat, revenus_locatifs, revenus_nets, revenus_nets_reverses)
+VALUES (1, '2023-09-18 12:00:00', '2023-10-18 12:00:00', 50000.00, 100000.00, 2000.00, 3000.00, 1500.00, 1000.00, 2000.00, 5000.00, 4000.00, 2500.00, 2200.00);
+
+INSERT INTO Location (bien_id_fk, description, date_mise_en_location, contrat_location)
+VALUES (1, 'Appartement en location', '2023-09-19 12:00:00', 'Contrat001');
+
+INSERT INTO Token (projet_id_fk, prix_token, detenteur_id_tk, statut_token)
+VALUES (1, 50.00, 1, 'Disponible');
+
+INSERT INTO Dividende (projet_id_fk, montant, date_paiement)
+VALUES (1, 1000.00, '2023-09-20 12:00:00');
+
+INSERT INTO Wallet (user_id_fk, balance)
+VALUES (1, 2000.00);
+
+INSERT INTO Transaction (emetteur_id_fk, recepteur_id_fk, montant_transaction, type_transaction, date_transaction, statut_transaction)
+VALUES (1, 2, 200.00, 'Achat', '2023-09-20 12:00:00', 'Réussi');
+
+INSERT INTO User (nom, prenom, email, mot_de_passe, telephone, carte_identite, role, date_dernier_login)
+VALUES ('Doe', 'John', 'john.doe@example.com', 'password', 123456789, 'ID001', 'Investisseur', '2023-09-17 12:00:00');
+
+INSERT INTO Investissement (investisseur_id_tk, projet_id_fk, montant, nombre_tokens, date_investissement, statut_investissement)
+VALUES (1, 1, 1000.00, 20, '2023-09-18 12:00:00', 'Réussi');
+
+INSERT INTO Photo (bien_id_fk, photo_bien)
+VALUES (1, 'photo1.jpg');
+
+

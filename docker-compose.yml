@@ -21,7 +21,8 @@ services:
       - db:/var/lib/mysql
 
   api:
-    build: .
+    build: 
+      dockerfile: Dockerfile
     ports:
       - "4000:4000"
     depends_on:
@@ -30,11 +31,15 @@ services:
       - ./shareimmo-api:/shareimmo-api
 
   ihm:
-    build: ./shareimmo-ihm
+    build: 
+      dockerfile: Dockerfile
+      context: ./shareimmo-ihm
     ports:
-      - "3001:80"
+      - "3000:80"
     depends_on:
       - api
+    volumes:
+      - ./shareimmo-ihm:/shareimmo-ihm
 
 volumes: 
   db:

@@ -17,8 +17,8 @@ logs:
 	docker logs api
 
 refresh:
-	docker exec api npm run build &&\
-	docker exec ihm npm run build
+	docker exec shareimmo-api-1 npm run build &&\
+	docker exec shareimmo-ihm-1 npm run build
 
 clean:
 	docker-compose down
